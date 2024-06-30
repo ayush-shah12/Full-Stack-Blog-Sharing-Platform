@@ -1,0 +1,56 @@
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Make the container take full viewport height */
+}
+
+.form {
+    max-width: 400px;
+    width: 100%; /* Ensure form takes up the full width up to max-width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.field {
+    border-radius: 10px;
+    background-color: white;
+    width: 100%; /* Make field take up full width of the form */
+    height: 30px;
+    margin-bottom: 10px; /* Add some space between the inputs */
+    padding: 5px; /* Add padding for better spacing inside the input */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+    margin-left: 1080px;
+    color:black;
+}
+
+.button {
+    border-radius: 10px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 600;
+    font-family: inherit;
+    background-color: rgb(89, 88, 88);
+    cursor: pointer;
+    transition: border-color 0.25s;
+    margin: 10px;
+    opacity: 1;
+    color: rgb(255, 255, 255);
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 1080px;
+}
+
+.error {
+    color: red;
+    margin-bottom: 400px;
+    font-size: larger;
+    justify-content: center;
+    text-align: center;
+    margin-left: 105px;
+
+  }

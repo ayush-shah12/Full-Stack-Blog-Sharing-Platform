@@ -1,0 +1,44 @@
+.post {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    margin-left:70px;
+    margin-bottom: 20px; /* Optional: Add margin between posts */
+    width:calc(100vw-20px);
+    
+}
+
+.image {
+    flex: 0 0 auto; /* Flex item does not grow or shrink, fixed width based on content */
+    margin-right: 20px; /* Optional: Add space between image and text */
+    margin-left:20px;
+    max-width: 500px;
+    margin-top:27px;
+}
+
+.image img {
+    max-width: 70%; /* Ensure image does not exceed its container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.content {
+    display: flex;
+    flex-direction: column; /* Stack title and text vertically */
+}
+
+.title {
+
+    max-width: 500px; /* Adjust as needed */
+    margin: 17px 0px 0px 0px;
+}
+
+.text {
+    margin: 0px 0px 10px 0px;
+    max-width: 800px; /* Adjust as needed */
+    
+}
+
+.author{
+    margin: 0px 0px 0px 0px;
+    position: relative;
+}
