@@ -8,7 +8,7 @@ const mongoose = require("mongoose")
 const jwt = require("jsonwebtoken")
 const cookieParser = require("cookie-parser")
 
-const secret = "siaojsnfskzx" //REPLACE 
+const secret = "" //REPLACE 
 
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
 app.use(express.json())
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 //connect to database
 
 //REPLACE
-mongoose.connect("mongodb+srv://ayushsh285:ayush2005@blogcluster.l9y8gwt.mongodb.net/?retryWrites=true&w=majority&appName=BlogCluster")
+mongoose.connect("mongodb+srv://<username>:<password>@blogcluster.l9y8gwt.mongodb.net/?retryWrites=true&w=majority&appName=BlogCluster")
 
 //registering
 app.post('/register', async (req, res) => {
