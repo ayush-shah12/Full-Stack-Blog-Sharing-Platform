@@ -8,7 +8,7 @@ const mongoose = require("mongoose")
 const jwt = require("jsonwebtoken")
 const cookieParser = require("cookie-parser")
 
-const secret = "" //REPLACE 
+const secret = "siaojsnfskzx" //REPLACE 
 
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
 app.use(express.json())
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 //connect to database
 
 //REPLACE
-mongoose.connect("")        //replace <username> & <password>
+mongoose.connect("mongodb+srv://ayushsh285:ayush2005@blogcluster.l9y8gwt.mongodb.net/?retryWrites=true&w=majority&appName=BlogCluster")
 
 //registering
 app.post('/register', async (req, res) => {
@@ -43,10 +43,13 @@ app.post('/register', async (req, res) => {
         }
 
 
-        //pass: bcrypt.hashSync(pass, salt) 
+        //pass: bcrypt.hashSync(pass, salt)
+        else {
 
-        const userDoc = await User.create({ user, pass });
-        return res.status(201).json("Success!");
+
+            const userDoc = await User.create({ user, pass });
+            return res.status(201).json("Success!");
+        }
     }
     catch (error) {
         console.error(error);
@@ -93,9 +96,12 @@ app.post('/login', async (req, res) => {
 app.get("/profile", (req, res) => {
     const { token } = req.cookies;
     jwt.verify(token, secret, {}, (err, info) => {
-        if (err) res.json(null);
+        if (err)
+            res.json(null);
+        else {
+            res.json(info)
+        }
 
-        res.json(info)
     })
 
 })
@@ -113,18 +119,22 @@ app.post("/create", async (req, res) => {
             if (err) {
                 return res.status(401).json("Unauthorized");
             }
+            else {
 
-            const { title, summary, imageURL, text, author, authorID } = req.body;
-            //const { title, summary, imageURL, text, author } = req.body;
 
-            if (!title || !summary || !imageURL || !text || !author) {
-                return res.status(400).json({ message: 'All fields must be filled out' });
+
+                const { title, summary, imageURL, text, author, authorID } = req.body;
+                //const { title, summary, imageURL, text, author } = req.body;
+
+                if (!title || !summary || !imageURL || !text || !author) {
+                    return res.status(400).json({ message: 'All fields must be filled out' });
+                }
+
+                const post = await Post.create({ title, summary, imageURL, text, author, authorID });
+
+                //const post = await Post.create({ title, summary, imageURL, text, author});
+                return res.status(200).json()
             }
-            
-            const post = await Post.create({ title, summary, imageURL, text, author, authorID}); 
-
-            //const post = await Post.create({ title, summary, imageURL, text, author});
-            return res.status(200).json()
         })
     }
     catch (e) {
@@ -142,6 +152,31 @@ app.get("/post", async (req, res) => {
         res.status(500).send(err);
     }
 });
+
+//validating post/* url
+app.get("/posts/:postID", async (req, res) => {
+    try {
+        const { postID } = req.params;
+
+        if (!mongoose.isValidObjectId(postID)) {
+            return res.status(404).json({ error: 'Invalid postID' });
+        }
+
+        const post = await Post.findOne({ _id: postID });
+
+        if (!post) {
+            return res.status(404).json("Post not found");
+        }
+
+        else {
+            return res.status(200).json(post);
+        }
+
+    } catch (err) {
+        return res.status(500).json("Error fetching post");
+    }
+});
+
 
 app.listen(4000);
 
