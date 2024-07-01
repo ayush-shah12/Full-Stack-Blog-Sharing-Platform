@@ -27,7 +27,7 @@ const Register = () => {
     //passes user,pass to backend
     async function handleRegister(e) {
         e.preventDefault();
-        const response = await fetch("http://localhost:4000/register", {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_PORT_URL}/register`, {
             method: "POST",
             body: JSON.stringify({ user, pass }),
             headers: { "Content-Type": " application/json" },
@@ -61,7 +61,7 @@ const Register = () => {
     const [redirect, setRedirect] = useState(false)
     const { setUserInfo } = useContext(UserContext)
     async function handleLogin() {
-        const response = await fetch("http://localhost:4000/login", {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_PORT_URL}/login`, {
             method: "POST",
             body: JSON.stringify({ user, pass }),
             headers: { "Content-Type": " application/json" },

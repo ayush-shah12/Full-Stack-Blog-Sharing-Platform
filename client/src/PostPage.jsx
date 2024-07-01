@@ -23,7 +23,7 @@ const PostPage = () => {
     useEffect(() => {
         const getPost = async () => {
             try {
-                const response = await fetch(`http://localhost:4000/posts/${thisPostID}`);
+                const response = await fetch(`${import.meta.env.VITE_SERVER_PORT_URL}/posts/${thisPostID}`);
 
                 if (!response.ok) {
                     setIsValid(false);

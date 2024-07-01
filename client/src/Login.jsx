@@ -30,7 +30,7 @@ const Login = () => {
 
     async function handleLogin(e) {
         e.preventDefault();
-        const response = await fetch("http://localhost:4000/login", {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_PORT_URL}/login`, {
             method: "POST",
             body: JSON.stringify({ user, pass }),
             headers: { "Content-Type": " application/json" },

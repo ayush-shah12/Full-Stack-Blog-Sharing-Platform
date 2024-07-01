@@ -1,30 +1,29 @@
-//all imports required
-const express = require('express')
-const cors = require("cors")
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require("cors");
+const User = require('./models/User');
+const Post = require("./models/Post");
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
+
 const app = express();
-const User = require('./models/User')
-const Post = require("./models/Post")
-const mongoose = require("mongoose")
-const jwt = require("jsonwebtoken")
-const cookieParser = require("cookie-parser")
 
-const secret = "siaojsnfskzx" //REPLACE 
-
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }))
-app.use(express.json())
-app.use(cookieParser())
+const PORT = process.env.PORT;
+const DATABASE_URL = process.env.DATABASE_URL;
+const JWT_SECRET = process.env.JWT_SECRET;
+const CORS_ORIGIN = process.env.CORS_ORIGIN;
 
 
-//const bodyParser = require("body-parser");
-//app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors({ credentials: true, origin: CORS_ORIGIN }));
+app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
-//const salt = bcrypt.genSaltSync(10); implement this later on
+mongoose.connect(DATABASE_URL)
+    .then(() => console.log('Database connected'))
+    .catch(err => console.error(err));
 
-//connect to database
-
-//REPLACE
-mongoose.connect("mongodb+srv://ayushsh285:ayush2005@blogcluster.l9y8gwt.mongodb.net/?retryWrites=true&w=majority&appName=BlogCluster")
 
 //registering
 app.post('/register', async (req, res) => {
@@ -66,7 +65,7 @@ app.post('/login', async (req, res) => {
         const checkUser = await User.findOne({ user })
 
         if (checkUser.pass === pass) {
-            jwt.sign({ user, id: checkUser._id }, secret, {}, (err, token) => {
+            jwt.sign({ user, id: checkUser._id }, JWT_SECRET, {}, (err, token) => {
                 if (err) {
                     console.error(err);
                     return res.status(500).json("Error token")
@@ -95,7 +94,7 @@ app.post('/login', async (req, res) => {
 //returns logged in user info if available
 app.get("/profile", (req, res) => {
     const { token } = req.cookies;
-    jwt.verify(token, secret, {}, (err, info) => {
+    jwt.verify(token, JWT_SECRET, {}, (err, info) => {
         if (err)
             res.json(null);
         else {
@@ -115,7 +114,7 @@ app.post("/logout", (req, res) => {
 app.post("/create", async (req, res) => {
     const { token } = req.cookies;
     try {
-        jwt.verify(token, secret, {}, async (err, info) => {
+        jwt.verify(token, JWT_SECRET, {}, async (err, info) => {
             if (err) {
                 return res.status(401).json("Unauthorized");
             }
@@ -177,6 +176,5 @@ app.get("/posts/:postID", async (req, res) => {
     }
 });
 
-
-app.listen(4000);
+app.listen(PORT);
 

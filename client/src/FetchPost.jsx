@@ -11,7 +11,7 @@ const FetchPost = () => {
 
 
     async function generatePosts() {
-        const response = await fetch("http://localhost:4000/post", {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_PORT_URL}/post`, {
             method: "GET"
         });
         const data = await response.json();

@@ -2,14 +2,16 @@ import { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
 
+
 const Header = () => {
 
   const navigate = useNavigate();
 
   const { userInfo, setUserInfo } = useContext(UserContext);
 
+
   function handleLogout() {
-    fetch("http://localhost:4000/logout", {
+    fetch(`${import.meta.env.VITE_SERVER_PORT_URL}/logout`, {
       credentials: "include",
       method: "POST"
     });
@@ -18,7 +20,7 @@ const Header = () => {
     
   }
   useEffect(() => {
-    fetch("http://localhost:4000/profile",{
+    fetch(`${import.meta.env.VITE_SERVER_PORT_URL}/profile`,{
       credentials: "include"
     })
     .then(response => response.json()

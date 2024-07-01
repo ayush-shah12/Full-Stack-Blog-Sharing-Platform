@@ -50,7 +50,7 @@ const CreatePost = () => {
 
         };
 
-        const response = await fetch("http://localhost:4000/create", {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_PORT_URL}/create`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
