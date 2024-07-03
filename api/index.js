@@ -176,5 +176,87 @@ app.get("/posts/:postID", async (req, res) => {
     }
 });
 
+app.get("/edit/:postID", async (req, res) => {
+    try {
+        const { postID } = req.params;
+
+        if (!mongoose.isValidObjectId(postID)) {
+            return res.status(404).json({ error: 'Invalid postID' });
+        }
+
+        const post = await Post.findOne({ _id: postID });
+
+        if (!post) {
+            return res.status(404).json("Post not found");
+        }
+
+        else {
+            return res.status(200).json(post);
+        }
+
+    } catch (err) {
+        return res.status(500).json("Error fetching post");
+    }
+});
+
+
+app.delete("/delete", async (req, res) => {
+    try {
+        const { id: postID } = req.body;
+        const result = await Post.findByIdAndDelete(postID);
+        if (result) {
+            res.status(200).send({ message: 'Document deleted successfully' });
+        } else {
+            res.status(404).send({ message: 'Document not found' }).json(postID);
+        }
+    } catch (error) {
+        res.status(500).send({ message: 'Error deleting document', error });
+    }
+});
+
+app.get("/users/:userID", async (req, res) => {
+    try {
+        const { userID } = req.params;
+
+        if (!mongoose.isValidObjectId(userID)) {
+            return res.status(404).json({ error: 'Invalid postID' });
+        }
+
+        const post = await Post.find({ authorID: userID });
+
+        if (!post) {
+            return res.status(404).json("Post not found");
+        }
+
+        else {
+            return res.status(200).json(post);
+        }
+
+    } catch (err) {
+        return res.status(500).json("Error fetching post");
+    }
+});
+
+app.get("/name/:userID", async (req, res) => {
+    try {
+        const { userID } = req.params;
+
+        const user = await User.find({ _id: userID });
+
+        if (!user) {
+            return res.status(404).json("Post not found");
+        }
+
+        else {
+            return res.status(200).json(user);
+        }
+
+    } catch (err) {
+        return res.status(500).json("Error fetching post");
+    }
+});
+
+
+
 app.listen(PORT);
 
