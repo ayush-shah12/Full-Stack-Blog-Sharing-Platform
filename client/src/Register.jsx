@@ -1,3 +1,4 @@
+/* Registration Page */
 import styles from "./Login.module.css"
 import Header from "./Header"
 import { useState } from "react"
@@ -53,10 +54,7 @@ const Register = () => {
 
     };
 
-    /**
-     * going to put auth functions into one file and import later on
-     * but for now just copy pasting here 
-     */
+
     const navigate = useNavigate()
     const [redirect, setRedirect] = useState(false)
     const { setUserInfo } = useContext(UserContext)

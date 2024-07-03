@@ -7,6 +7,7 @@ import Register from "./Register.jsx"
 import CreatePost from './CreatePost.jsx'
 import PostPage from "./PostPage.jsx"
 import UserPage from "./UserPage.jsx"
+import EditPage from "./EditPage.jsx"
 import { UserContextProvider } from './UserContext.jsx'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -17,7 +18,8 @@ const router = createBrowserRouter([
   { path: "/register", element: <Register /> },
   { path: "/createPost", element: <CreatePost /> },
   {path:"/posts/:postID", element: <PostPage/>},
-  {path:"/users/:userID", element: <UserPage/>}
+  {path:"/users/:userID", element: <UserPage/>},
+  {path:"/edit/:postID", element: <EditPage/>}
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

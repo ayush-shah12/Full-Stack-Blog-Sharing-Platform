@@ -1,0 +1,61 @@
+.image{
+    max-height:300px;
+    display: flex;
+    overflow:hidden;
+    justify-content: center;
+}
+
+.image img{
+    object-fit: cover;
+    object-position: center center;
+    width: 30%;
+    height: 50%;
+}
+
+.post_page h1{
+    text-align: center;
+    margin: 10px 0 5px; 
+}
+
+.time{
+    text-align: center;
+    display: block;
+    font-size:1rem;
+    color:#aaa;
+    margin: 10px 0;
+
+}
+
+.author{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: .9rem;
+    font-weight: bold;
+}
+
+.content {
+    line-height: 1.7rem;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-bottom: 2%;
+    text-align: center;
+    width: 80%;
+}
+
+.edit_row{
+    text-align:center;
+    margin-bottom: 1px;
+    height:50px
+}
+.edit_btn{
+    background-color: #333;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+    padding:15px 30px;
+    border-radius: 2px;
+    text-decoration: none;
+    width: 5%;
+    height: 10%;
+}

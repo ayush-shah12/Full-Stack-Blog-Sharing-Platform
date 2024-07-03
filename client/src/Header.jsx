@@ -1,3 +1,4 @@
+/* Dynamic Header */
 import { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
@@ -27,7 +28,10 @@ const Header = () => {
     .then(userInfo => setUserInfo(userInfo)))
     }, []);
 
-  const username = userInfo?.user;  
+  const username = userInfo?.user; 
+  const firstName = username?.split(" ")[0];
+   
+
 
   return (
     <header style={{ display: "flexbox", top: "20%", padding: "20px" }}>
@@ -39,7 +43,7 @@ const Header = () => {
 
       {username && (
         <>
-          <a style={{ position: "absolute", left: "80%", top: "3%" }}>Welcome {username}</a>
+          <a style={{ position: "absolute", left: "80%", top: "3%" }}>Welcome {firstName}</a>
 
           <Link to="/createPost">
             <button style={{ positon: "absolute", left: "90%", top: "3%", }}>Create</button>

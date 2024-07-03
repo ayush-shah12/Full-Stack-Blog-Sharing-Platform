@@ -1,3 +1,4 @@
+/* Create Post Page */
 import styles from "./CreatePost.module.css"
 import Header from "./Header"
 import { useState } from "react"

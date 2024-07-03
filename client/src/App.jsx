@@ -9,10 +9,10 @@ import FetchPost from './FetchPost.jsx'
 const App = () => {
 
   return (
-    <main>
+    <div>
      <Header/>
      <FetchPost/>
-    </main>
+    </div>
   )
 
 }

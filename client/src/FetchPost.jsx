@@ -1,3 +1,4 @@
+/* Gets ALL Posts */
 import Post from "./Post";
 import { useState, useEffect } from "react";
 

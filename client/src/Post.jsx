@@ -1,3 +1,4 @@
+/* Structure of a Post */
 import styles from "./Post.module.css"
 
 const Post = (props) => {
@@ -9,24 +10,26 @@ const Post = (props) => {
 
     return (
         <div className={styles.post}>
-            
+
             <div className={styles.image}>
-                <img src={props.imageURL}></img>
+                <img src={props.imageURL} onError={(e) => {
+                    e.target.src = './missing_image.avif'; 
+                }}></img>
             </div>
 
             <div className={styles.content}>
-                
+
                 <h2 className={styles.title}>
                     <a href={`/posts/${props.objectId}`} className={styles.link}> {props.title} </a>
                 </h2>
-                
+
                 <p className={styles.text}>{props.summary}</p>
 
                 <p className={styles.author}>
                     <a href={`/users/${props.authorID}`} className={styles.link}> By: {props.author} </a>
                 </p>
 
-                <p>At: {dateFromObjectId(props.objectId).toString()}</p>
+                <p>Last Updated: {dateFromObjectId(props.objectId).toString()}</p>
 
             </div>
         </div>

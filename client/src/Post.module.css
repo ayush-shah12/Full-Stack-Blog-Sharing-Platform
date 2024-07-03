@@ -10,14 +10,14 @@
 
 .image {
     flex: 0 0 auto; /* Flex item does not grow or shrink, fixed width based on content */
-    margin-right: 20px; /* Optional: Add space between image and text */
+    margin-right: 50px; /* Optional: Add space between image and text */
     margin-left:20px;
     max-width: 500px;
     margin-top:27px;
 }
 
 .image img {
-    max-width: 70%; /* Ensure image does not exceed its container */
+    width: 350px; /* Ensure image does not exceed its container */
     height: auto; /* Maintain aspect ratio */
 }
 
