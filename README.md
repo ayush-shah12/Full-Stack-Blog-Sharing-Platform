@@ -1,10 +1,10 @@
 Full Stack Blog Sharing Platform
 
-To add as of 6/29 9:46pm:
-Implement hashing of passwords
-Add image uploading middleware
-improve code structure
-implement OAuth 2.0
-allow for editing of posts
+As of 7-2-24
 
-improve css/design choices
+Full Stack Blog Sharing Platform featuring login/registration and authentication, viewing, uploading, and editing posts and viewing user profiles.
+
+Tech Stack: React, Express, Node.js, MongoDB Atlas
+
+In Progress Additions: Blog Post interactions & analytics(clicks, likes, comments, etc...), Overall improvement of UX, implement a image uploading middleware(currently url based) 
+
