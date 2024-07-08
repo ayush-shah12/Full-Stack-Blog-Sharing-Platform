@@ -1,0 +1,13 @@
+.header{ display: flexbox; top: 20%; padding: 20px }
+.button_home{ position: absolute; left: 10%; top: 3%; }
+
+.button_loginwelcome{
+     position: absolute; left: 80%; top: 3% 
+}
+
+.button_createregister{
+    position: absolute; left: 90%; top: 3%
+}
+
+.button_logout{ 
+    position: absolute; left: 95%; top: 3% }

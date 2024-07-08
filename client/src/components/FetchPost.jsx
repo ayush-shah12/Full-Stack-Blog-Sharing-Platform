@@ -1,6 +1,7 @@
 /* Gets ALL Posts */
-import Post from "./Post";
+import Post from "./Post.jsx";
 import { useState, useEffect } from "react";
+import { generatePosts } from "../api/posts.js";
 
 const FetchPost = () => {
 
@@ -10,17 +11,17 @@ const FetchPost = () => {
         return new Date(parseInt(objectId.substring(0, 8), 16) * 1000);
     };
 
-
-    async function generatePosts() {
-        const response = await fetch(`${import.meta.env.VITE_SERVER_PORT_URL}/post`, {
-            method: "GET"
-        });
-        const data = await response.json();
-        setPosts(data);
-    }
-
     useEffect(() => {
-        generatePosts();
+        const fetchPosts = async () => {
+            try {
+                const postsData = await generatePosts();
+                setPosts(postsData);
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+            }
+        };
+
+        fetchPosts();
     }, []);
 
     return (

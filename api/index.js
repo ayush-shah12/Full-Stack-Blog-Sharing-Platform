@@ -42,7 +42,7 @@ app.post('/register', async (req, res) => {
         }
 
 
-        //pass: bcrypt.hashSync(pass, salt)
+
         else {
 
 

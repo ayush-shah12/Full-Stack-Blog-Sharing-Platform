@@ -1,10 +1,11 @@
 /* Individual Post Page */
-import { useParams, useNavigate, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { UserContext } from "./UserContext";
-import Header from "./Header";
-import styles from "./PostPage.module.css"
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { UserContext } from "../UserContext/UserContext.jsx";
+import Header from "../components/Header.jsx";
+import styles from "../styles/PostPage.module.css";
+import pic from "../assets/missing_image.avif"
+import { getPost } from "../api/posts.js";
 
 const PostPage = () => {
 
@@ -31,9 +32,9 @@ const PostPage = () => {
     }
 
     useEffect(() => {
-        const getPost = async () => {
+        const getPostFunction = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_SERVER_PORT_URL}/posts/${thisPostID}`);
+                const response = await getPost(thisPostID);
 
                 if (!response.ok) {
                     setIsValid(false);
@@ -47,7 +48,7 @@ const PostPage = () => {
                 console.log("Error fetching post:", error);
             }
         };
-        getPost();
+        getPostFunction();
     }, [thisPostID]);
 
     return (
@@ -71,7 +72,7 @@ const PostPage = () => {
             )}
             <div className={styles.image}>
                 <img src={postInfo.imageURL} onError={(e) => {
-                    e.target.src = './missing_image.avif';
+                    e.target.src = pic;
                 }} />
             </div>
 

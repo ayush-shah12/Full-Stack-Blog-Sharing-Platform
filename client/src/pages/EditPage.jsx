@@ -1,10 +1,10 @@
 /* Edit Post Page */
-import Header from "./Header";
-import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useContext } from "react";
-import { UserContext } from "./UserContext";
-import styles from "./CreatePost.module.css"
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Header from "../components/Header.jsx";
+import { UserContext } from "../UserContext/UserContext.jsx";
+import styles from "../styles/CreatePost.module.css";
+import { create, getPostInfo, deletePost } from "../api/posts.js";
 
 const EditPage = () => {
 
@@ -39,7 +39,7 @@ const EditPage = () => {
     useEffect(() => {
         const getPost = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_SERVER_PORT_URL}/edit/${thisPostID}`);
+                const response = await getPostInfo(thisPostID);
 
                 if (!response.ok) {
                     console.log(response);
@@ -47,7 +47,6 @@ const EditPage = () => {
                 else {
                     const postData = await response.json();
                     setPostInfo(postData);
-
                     setTitle(postData.title);
                     setImageURL(postData.imageURL);
                     setSummary(postData.summary);
@@ -75,14 +74,7 @@ const EditPage = () => {
 
         };
 
-        const response = await fetch(`${import.meta.env.VITE_SERVER_PORT_URL}/create`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-            credentials: "include"
-        });
-
-        const responseBody = await response;
+        const responseBody = await create(data);
 
         switch (responseBody.status) {
             case 200:
@@ -103,13 +95,7 @@ const EditPage = () => {
 
     const handleDelete = async () => {
         try {
-            const delResponse = await fetch(`${import.meta.env.VITE_SERVER_PORT_URL}/delete`, {
-                method: "DELETE",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ id: thisPostID })
-            });
+            const delResponse = await deletePost(thisPostID)
 
             if (!delResponse.ok) {
                 console.error("Failed to delete the post.");

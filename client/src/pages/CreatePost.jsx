@@ -1,11 +1,12 @@
 /* Create Post Page */
-import styles from "./CreatePost.module.css"
-import Header from "./Header"
+import styles from "../styles/CreatePost.module.css"
+import Header from "../components/Header.jsx"
 import { useState } from "react"
-import { UserContext } from "./UserContext"
+import { UserContext } from "../UserContext/UserContext.jsx";
 import { useContext } from "react"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { create } from "../api/posts.js";
 
 
 const CreatePost = () => {
@@ -51,14 +52,7 @@ const CreatePost = () => {
 
         };
 
-        const response = await fetch(`${import.meta.env.VITE_SERVER_PORT_URL}/create`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-            credentials: "include"
-        });
-
-        const responseBody = await response;
+        const responseBody = await create(data);
 
         switch (responseBody.status) {
             case 200:

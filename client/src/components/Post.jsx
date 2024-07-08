@@ -1,5 +1,6 @@
 /* Structure of a Post */
-import styles from "./Post.module.css"
+import styles from "../styles/Post.module.css"
+import pic from "../assets/missing_image.avif"
 
 const Post = (props) => {
 
@@ -13,7 +14,7 @@ const Post = (props) => {
 
             <div className={styles.image}>
                 <img src={props.imageURL} onError={(e) => {
-                    e.target.src = './missing_image.avif'; 
+                    e.target.src = pic;
                 }}></img>
             </div>
 

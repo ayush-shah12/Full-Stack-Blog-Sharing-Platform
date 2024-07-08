@@ -1,11 +1,12 @@
 /* Login Page */
-import styles from "./Login.module.css"
-import Header from "./Header"
+import styles from "../styles/Login.module.css";
+import Header from "../components/Header.jsx"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
-import { UserContext } from "./UserContext"
+import { UserContext } from "../UserContext/UserContext.jsx";
 import { useContext } from "react"
+import { login } from "../api/auth.js";
 
 const Login = () => {
 
@@ -31,14 +32,8 @@ const Login = () => {
 
     async function handleLogin(e) {
         e.preventDefault();
-        const response = await fetch(`${import.meta.env.VITE_SERVER_PORT_URL}/login`, {
-            method: "POST",
-            body: JSON.stringify({ user, pass }),
-            headers: { "Content-Type": " application/json" },
-            credentials: "include"  //jwt
-        });
 
-        const responseBody = await response;
+        const responseBody = await login(user, pass);
 
         switch (responseBody.status) {
             case 200:
