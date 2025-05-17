@@ -1,13 +1,3 @@
-Full Stack Blog Sharing Platform
+Full Stack Blog Sharing Platform - MERN Stack
 
-7-2-24
-Full Stack Blog Sharing Platform featuring login/registration and authentication, viewing, uploading, and editing posts and viewing user profiles.
-
-Tech Stack: React, Express, Node.js, MongoDB Atlas
-
-In Progress Additions: Blog Post interactions & analytics(clicks, likes, comments, etc...), Overall improvement of UX, implement a image uploading middleware(currently url based) 
-
-quick demo video: https://streamable.com/29gzcq
-
-7-8-24
-refactored code to follow best practices/optimize
+![image](https://github.com/user-attachments/assets/326975ab-0dff-4e26-8b38-aec743b470c7)
